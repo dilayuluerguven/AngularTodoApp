@@ -1,1 +1,46 @@
-<p>todo-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 offset-md-2">
+      <h2>Yapılacakalr</h2>
+      <a routerLink="/todo-add">İçerik ekle</a>
+      <table>
+        <thead>
+          <tr>
+            <th>Tamamlandı mı?</th>
+            <th>Id:</th>
+            <th>İçerik</th>
+            <th>Oluşturma tarihi</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of todoList">
+            <td>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [checked]="todo.isCompleted"
+                (change)="isCompleted(todo.id)"
+              />
+            </td>
+            <td>{{ todo.id }}</td>
+            <td>
+              <span>{{ todo.content }}</span>
+            </td>
+            <td>{{ todo.created | date : "short" }}</td>
+            <td>
+              <button (click)="delete(todo.id)" class="btn btn-danger">
+                Sil
+              </button>
+            </td>
+            <a
+              class="btn btn-success mx-2"
+              [routerLink]="['/todo-update', todo.id]"
+              >Güncelle</a
+            >
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

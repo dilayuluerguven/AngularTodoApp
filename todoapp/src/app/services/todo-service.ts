@@ -34,12 +34,13 @@ export class TodoService{
       .pipe(map((response) => response.status == 204));
   }
   update(todo: TodoUpdate) {
-    return this.http
-      .put<Response>(`${this.baseUrl}/api/todos/`, {
-        observe: 'response',
-      })
-      .pipe(map((response) => response.status == 204));
-  }
+  return this.http
+    .put<Response>(`${this.baseUrl}/api/todos/${todo.id}`, todo, {
+      observe: 'response',
+    })
+    .pipe(map((response) => response.status === 204));
+}
+
   isCompleted(id: number) {
     return this.http
       .put<Response>(`${this.baseUrl}/api/todos/${id}`,{}, {
