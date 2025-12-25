@@ -1,1 +1,19 @@
-<p>todo-update works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Yapılacak içeriği Güncelle</h2>
+      <form [formGroup]="todoForm" (ngSubmit)="update()">
+        <div class="mb-3">
+          <label for="">İçerik</label>
+          <textarea
+            class="form-control"
+            formControlName="content"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <button class="btn btn-primary">Güncelle</button>
+      </form>
+    </div>
+  </div>
+</div>

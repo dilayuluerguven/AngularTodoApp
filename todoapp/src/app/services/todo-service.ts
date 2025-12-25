@@ -17,7 +17,7 @@ export class TodoService{
     return this.http.get<Todo[]>(`${this.baseUrl}/api/todos`);
   }
   get(id: number) {
-    return this.http.get<Todo[]>(`${this.baseUrl}/api/todos/${id}`);
+    return this.http.get<Todo>(`${this.baseUrl}/api/todos/${id}`);
   }
   create(todo: TodoAdd) {
     return this.http
@@ -38,12 +38,13 @@ export class TodoService{
     .put<Response>(`${this.baseUrl}/api/todos/${todo.id}`, todo, {
       observe: 'response',
     })
-    .pipe(map((response) => response.status === 204));
+    .pipe(map(response => response.status === 204));
 }
 
+  
   isCompleted(id: number) {
     return this.http
-      .put<Response>(`${this.baseUrl}/api/todos/${id}`,{}, {
+      .put<Response>(`${this.baseUrl}/api/todos/iscompleted/${id}`,{}, {
         observe: 'response',
       })
       .pipe(map((response) => response.status == 204));
